@@ -61,8 +61,10 @@ public class Anagram
             quickSort(charArray, 0, charArray.length - 1);
             String key = new String(charArray);
 
-            if (result.containsKey(key)) {    //If key is already in map, add word to the corresponding LinkedList
-                result.get(key).add(array[i]);
+            if (result.containsKey(key)) {    //If key is already in map and value is not a duplicate
+                if (!result.get(key).contains(array[i])){
+                    result.get(key).add(array[i]);
+                }
             } else {    //if first time inserting into map
                 List<String> values = new LinkedList<String>();
                 values.add(array[i]);
@@ -114,31 +116,5 @@ public class Anagram
         char temp = array[i];
         array[i] = array[j];
         array[j] = temp;
-    }
-    /**************************************************************/
-    /* Method: checkDuplicates                                    */
-    /* Purpose: checks and removes any duplicates, shifting the   */
-    /* array if a duplicate is found. Assumes input array is      */
-    /* presorted.                                                 */
-    /* Parameters:                                                */
-    /* String[] array: array to check duplicates for              */
-    /**************************************************************/
-    private String[] checkDuplicates(String[] array)
-    {
-        int count = 0;
-        String[] temp = new String[array.length];
-        for (int i = 0; i < array.length - 1; i++) { //add unique elements to temp array. iterate count
-            if (array[i] != array[i + 1]) {
-                temp[count++] = array[i];
-            }
-        }
-        temp[count++] = array[array.length - 1];    //add the last element of the array 
-
-        String[] result = new String[count];        //create new result array with the appropriate size
-        for (;count >= 0; count--) {                //copy contents of temp array to result array
-            result[count] = temp[count];
-        }
-        
-        return result;
     }
 }
