@@ -40,9 +40,6 @@ public class Anagram
             String s = list.get(i);
             if (!s.equals(word)) {
                 result += s;
-                if (word.equals("god")) {
-                    System.out.println(list);
-                }
                 if (i != list.size() - 1 && !(list.get(list.size() - 1).equals(word) && i == list.size() - 2)) {  //if last element is not equal to the word, print comma
                     result += ", ";
                 }
