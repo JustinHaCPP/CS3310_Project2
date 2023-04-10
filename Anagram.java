@@ -34,6 +34,7 @@ public class Anagram
         String key = new String(charArray);
 
         List<String> list = map.get(key);
+        //FORMAT STRING OUTPUT
         String result = "{";
         for (int i = 0; i < list.size(); i++) {
             String s = list.get(i);
