@@ -14,18 +14,32 @@ import java.util.List;
 public class Anagram
 {
     private String[] dict;
-    private String[] words;
     private HashMap<String,List<String>> map;
-    public Anagram(String[] dictionary, String[] words)
+    public Anagram(String[] dictionary)
     {
         this.dict = dictionary;
-        this.words = words;
     }
+    /**************************************************************/
+    /* Method: transformArray                                     */
+    /* Purpose: Creates a map with a sorted word as the key and   */
+    /* the original word as its value                             */
+    /* Parameters:                                                */
+    /* String[] array: array that has words to map values to      */
+    /**************************************************************/
     /**************************************************************/
     /* Method: sort                                               */
     /* Purpose: initializes the quickSort algorithm to sort the   */
     /* dictionary alphabetically and removes duplicates.          */
     /**************************************************************/
+    public List<String> anagram(String word) 
+    {
+        String stringWord = word.toLowerCase();         //Converts String to all lowercase
+        char[] charArray = stringWord.toCharArray();    //reformats to a char array to be used for sorting
+        quickSort(charArray, 0, charArray.length - 1);
+        String key = new String(charArray);
+        
+        return map.get(key);
+    }
     public void sort()
     {
         this.map = transformArray(dict);
@@ -42,17 +56,17 @@ public class Anagram
         HashMap<String,List<String>> result = new HashMap<String,List<String>>();
 
         for (int i = 0; i < array.length; i++) {
-            String stringWord = array[i].toLowerCase();     //Converts String to all lowercase
-            char[] charArray = stringWord.toCharArray();    //reformats to a char array to be used for sorting
-            quickSort(charArray, 0, charArray.length);
+            String lowerWord = array[i].toLowerCase();     //Converts String to all lowercase
+            char[] charArray = lowerWord.toCharArray();    //reformats to a char array to be used for sorting
+            quickSort(charArray, 0, charArray.length - 1);
             String key = new String(charArray);
 
-            if (!map.containsKey(key)) {    //if first time inserting into map
+            if (result.containsKey(key)) {    //If key is already in map, add word to the corresponding LinkedList
+                result.get(key).add(array[i]);
+            } else {    //if first time inserting into map
                 List<String> values = new LinkedList<String>();
-                values.add(stringWord);
+                values.add(array[i]);
                 result.put(key, values);
-            } else {
-                result.get(key).add(stringWord);    //If key is already in map, add word to the corresponding LinkedList
             }
         }
 
