@@ -19,11 +19,12 @@ public class Anagram
     /**************************************************************/
     /* Method: sort                                               */
     /* Purpose: initializes the quickSort algorithm to sort the   */
-    /* dictionary alphabetically                                  */
+    /* dictionary alphabetically and removes duplicates.          */
     /**************************************************************/
     public void sort()
     {
         quickSort(0, dict.length - 1);
+        this.dict = checkDuplicates(dict);
     }
     /**************************************************************/
     /* Method: quickSort                                          */
@@ -64,5 +65,29 @@ public class Anagram
         String temp = dict[i];
         dict[i] = dict[j];
         dict[j] = temp;
+    }
+    /**************************************************************/
+    /* Method: checkDuplicates                                    */
+    /* Purpose: checks and removes any duplicates, shifting the   */
+    /* array if a duplicate is found. Assumes input array is      */
+    /* presorted.                                                 */
+    /**************************************************************/
+    public String[] checkDuplicates(String[] array)
+    {
+        int count = 0;
+        String[] temp = new String[array.length];
+        for (int i = 0; i < array.length - 2; i++) { //add unique elements to temp array. iterate count
+            if (array[i] != array[i + 1]) {
+                temp[count++] = array[i];
+            }
+        }
+        temp[count++] = array[array.length - 1];    //add the last element of the array 
+
+        String[] result = new String[count];        //create new result array with the appropriate size
+        for (;count >= 0; count--) {                //copy contents of temp array to result array
+            result[count] = temp[count];
+        }
+        
+        return result;
     }
 }
