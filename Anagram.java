@@ -26,14 +26,30 @@ public class Anagram
     /* Parameters:                                                */
     /* String word: word to find list of anagrams for             */
     /**************************************************************/
-    public List<String> anagram(String word) 
+    public String anagram(String word) 
     {
         String stringWord = word.toLowerCase();         //Converts String to all lowercase
         char[] charArray = stringWord.toCharArray();    //reformats to a char array to be used for sorting
         quickSort(charArray, 0, charArray.length - 1);
         String key = new String(charArray);
+
+        List<String> list = map.get(key);
+        String result = "{";
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i);
+            if (!s.equals(word)) {
+                result += s;
+                if (word.equals("god")) {
+                    System.out.println(list);
+                }
+                if (i != list.size() - 1 && !(list.get(list.size() - 1).equals(word) && i == list.size() - 2)) {  //if last element is not equal to the word, print comma
+                    result += ", ";
+                }
+            }
+        }
+        result += "}";
         
-        return map.get(key);
+        return result;
     }
     /**************************************************************/
     /* Method: transformArray                                     */
