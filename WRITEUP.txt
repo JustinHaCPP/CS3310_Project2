@@ -1,0 +1,14 @@
+My algorithm employs a Transform and Concquer style to accomplish finding sets of anagrams for a given input file.
+The algorithm starts off by creating a java HashMap. Every individual word in the dictionary is converted to lowercase and has its characters sorted alphabetically using quick sort.
+The sorted word is stored as a key in the HashMap, and the original word is stored inside a List. The list is stored as the value for the key value pair inside the java HashMap.
+
+Since the dictionary is iterated through n times and each word has its characters of length m sorted alphabetically using quicksort (which is mlogm),
+the time complexity is Θ(n * mlogm).
+
+Once the transform is complete, then the input file is iterated through x times. Every word also has its characters of length y alphabetically sorted using quick sort (mlogm).
+The then sorted word is compared with the keys in the HashMap and the resulting Linked List of anagrams is returned.
+The time complexity of this part of the algorithm is Θ(x * ylogy)
+
+So in total, the time complexity of this algorithm is Θ(n * mlogm) + Θ(x * ylogy) which can be simplified to Θ(n * mlogm).
+If we simplify the sorting of words mlogm as a constant (since each word in the dictionary takes about the same amount of time to sort), 
+then the time complexity can be seen as linear Θ(n).
