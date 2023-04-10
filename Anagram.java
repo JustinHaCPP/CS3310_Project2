@@ -15,10 +15,13 @@ public class Anagram
 {
     private String[] dict;
     private HashMap<String,List<String>> map;
+
+    //Constructor
     public Anagram(String[] dictionary)
     {
         this.dict = dictionary;
     }
+
     /**************************************************************/
     /* Method: anagram                                            */
     /* Purpose: compares a given string with dictionary and       */
@@ -49,6 +52,7 @@ public class Anagram
         
         return result;
     }
+
     /**************************************************************/
     /* Method: transformArray                                     */
     /* Purpose: Creates a map with a sorted word as the key and   */
@@ -79,6 +83,7 @@ public class Anagram
 
         this.map = result;
     }
+
     /**************************************************************/
     /* Method: quickSort                                          */
     /* Purpose: recursive quickSort algorithm to sort an array of */
@@ -108,6 +113,7 @@ public class Anagram
             quickSort(array, partitionIndex + 1, high);
         }
     }
+    
     /**************************************************************/
     /* Method: swap                                               */
     /* Purpose: swap array elements in the dictionary             */
