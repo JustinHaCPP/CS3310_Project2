@@ -20,16 +20,11 @@ public class Anagram
         this.dict = dictionary;
     }
     /**************************************************************/
-    /* Method: transformArray                                     */
-    /* Purpose: Creates a map with a sorted word as the key and   */
-    /* the original word as its value                             */
+    /* Method: anagram                                            */
+    /* Purpose: compares a given string with dictionary and       */
+    /* returns a list of anagrams                                 */
     /* Parameters:                                                */
-    /* String[] array: array that has words to map values to      */
-    /**************************************************************/
-    /**************************************************************/
-    /* Method: sort                                               */
-    /* Purpose: initializes the quickSort algorithm to sort the   */
-    /* dictionary alphabetically and removes duplicates.          */
+    /* String word: word to find list of anagrams for             */
     /**************************************************************/
     public List<String> anagram(String word) 
     {
@@ -40,10 +35,6 @@ public class Anagram
         
         return map.get(key);
     }
-    public void sort()
-    {
-        this.map = transformArray(dict);
-    }
     /**************************************************************/
     /* Method: transformArray                                     */
     /* Purpose: Creates a map with a sorted word as the key and   */
@@ -51,28 +42,28 @@ public class Anagram
     /* Parameters:                                                */
     /* String[] array: array that has words to map values to      */
     /**************************************************************/
-    private HashMap<String,List<String>> transformArray(String[] array)
+    public void transformArray()
     {
         HashMap<String,List<String>> result = new HashMap<String,List<String>>();
 
-        for (int i = 0; i < array.length; i++) {
-            String lowerWord = array[i].toLowerCase();     //Converts String to all lowercase
+        for (int i = 0; i < dict.length; i++) {
+            String lowerWord = dict[i].toLowerCase();     //Converts String to all lowercase
             char[] charArray = lowerWord.toCharArray();    //reformats to a char array to be used for sorting
             quickSort(charArray, 0, charArray.length - 1);
             String key = new String(charArray);
 
             if (result.containsKey(key)) {    //If key is already in map and value is not a duplicate
-                if (!result.get(key).contains(array[i])){
-                    result.get(key).add(array[i]);
+                if (!result.get(key).contains(dict[i])){
+                    result.get(key).add(dict[i]);
                 }
             } else {    //if first time inserting into map
                 List<String> values = new LinkedList<String>();
-                values.add(array[i]);
+                values.add(dict[i]);
                 result.put(key, values);
             }
         }
 
-        return result;
+        this.map = result;
     }
     /**************************************************************/
     /* Method: quickSort                                          */

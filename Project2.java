@@ -25,9 +25,9 @@ public class Project2
     {
         if (args.length == 2) {
             String[] dictionary = readDictData(args[0]);           //Get dictionary from readData function
-            String[] inFile = readFileData(args[1]);               //Get input file from readData function
+            LinkedList<String> inFile = readFileData(args[1]);     //Get input file from readData function
             Anagram anagram = new Anagram(dictionary);
-            anagram.sort();
+            anagram.transformArray();                              //Transforms the dictionary into a HashMap to be used for key comparisons
             for (String x : inFile) {
                 System.out.println(x + ": " + anagram.anagram(x));
             }
@@ -81,9 +81,9 @@ public class Project2
     /* an array of String                                         */
     /* Parameters:                                                */
     /* String fileName: Path of the input file                    */
-    /* Returns: String[] array of String                          */
+    /* Returns: LinkedList<String> linked list of String          */
     /**************************************************************/
-    public static String[] readFileData(String fileName) throws FileNotFoundException
+    public static LinkedList<String> readFileData(String fileName) throws FileNotFoundException
     {
         try {
             File file = new File(fileName);
@@ -99,9 +99,7 @@ public class Project2
             }
             fileReader.close();
             if (size != 0) {
-                String[] result = new String[size];
-                linkedList.toArray(result);           //convert dictionary linkedlist to array to sort later
-                return result;
+                return linkedList;
             } else {
                 System.out.println("Error: Empty input file");
                 System.exit(0);
