@@ -32,7 +32,7 @@ public class Project2
                 System.out.println(x + ": " + anagram.anagram(x));
             }
         } else {
-            System.out.println("Usage: java Anagram [Dictionary] [File]");
+            System.out.println("Usage: java Project2 [Dictionary] [File]");
         }
     }
 
