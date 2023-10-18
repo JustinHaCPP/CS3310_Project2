@@ -1,4 +1,4 @@
-CS 3310 | Justin Ha | BRONCO ID: 011706708
+CS 3310 | Justin Ha
 
 HOW TO COMPILE:
 -run 'javac Project2.java Anagram.java' at the command line
